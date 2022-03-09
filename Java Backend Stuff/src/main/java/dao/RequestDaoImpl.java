@@ -11,6 +11,7 @@ import exception.RequestNotFoundException;
 import exception.SystemException;
 
 import pojo.RequestPojo;
+import pojo.UserPojo;
 
 public class RequestDaoImpl implements RequestDao{
 
@@ -22,7 +23,10 @@ public class RequestDaoImpl implements RequestDao{
 			Statement stmt = conn.createStatement();
 			String query = "select * from request_details";
 			ResultSet rs = stmt.executeQuery(query);
-			
+			while(rs.next()) {
+				RequestPojo requestPojo = new RequestPojo(rs.getInt(1), rs.getInt(2), rs.getDouble(3), rs.getString(4), rs.getString(5));
+				allRequests.add(requestPojo);
+			}
 			
 		} catch (SQLException e) {
 			
@@ -45,7 +49,7 @@ public class RequestDaoImpl implements RequestDao{
 			String query = "select * from request_details where request_id="+requestId;
 			ResultSet rs = stmt.executeQuery(query);
 			if(rs.next()) {
-				requestPojo = new RequestPojo(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDouble(4), rs.getString(5), rs.getString(6));
+				requestPojo = new RequestPojo(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(5), rs.getString(6));
 			}
 			
 		} catch (SQLException e) {
@@ -86,7 +90,7 @@ public class RequestDaoImpl implements RequestDao{
 			}
 			int newRequestId = lastRequestId + 1;
 			
-			String query2 = "INSERT INTO request_details VALUES("+newRequestId+",'"+requestPojo.getManagerId()+"','"+requestPojo.getEmployeeId()+"','"+requestPojo.getRequestAmount()+"',"+requestPojo.getRequestDescription()+",'"+requestPojo.getRequestStatus()+"')";
+			String query2 = "INSERT INTO request_details VALUES("+newRequestId+"','"+requestPojo.getUserId()+"','"+requestPojo.getRequestAmount()+"',"+requestPojo.getRequestDescription()+",'"+requestPojo.getRequestStatus()+"')";
 			int rows = stmt.executeUpdate(query2);
 			requestPojo.setRequestId(newRequestId);
 		} catch (SQLException e) {

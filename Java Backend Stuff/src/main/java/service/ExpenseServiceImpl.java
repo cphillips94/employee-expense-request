@@ -2,8 +2,11 @@ package service;
 
 import java.util.List;
 
+
 import dao.RequestDao;
+import dao.RequestDaoImpl;
 import dao.UserDao;
+import dao.UserDaoImpl;
 import exception.NoEmployeeFoundException;
 import exception.RequestNotFoundException;
 import exception.SystemException;
@@ -13,6 +16,11 @@ import pojo.UserPojo;
 public class ExpenseServiceImpl implements ExpenseService{
 	RequestDao requestDao;
 	
+	public ExpenseServiceImpl() {
+		//bookDao = new BookDaoImpl();
+		userDao = new UserDaoImpl();
+		requestDao = new RequestDaoImpl();
+	}
 	public List<RequestPojo> fetchAllRequests() throws SystemException, RequestNotFoundException {
 		// TODO Auto-generated method stub
 		return requestDao.fetchAllRequests();
@@ -38,7 +46,7 @@ public class ExpenseServiceImpl implements ExpenseService{
 		return requestDao.deleteRequest(requestId);
 	}
 	
-	UserDao userDao; 
+	UserDaoImpl userDao; 
 	public List<UserPojo> listAllUser() throws SystemException, NoEmployeeFoundException {
 		// TODO Auto-generated method stub
 		return userDao.listAllUser();

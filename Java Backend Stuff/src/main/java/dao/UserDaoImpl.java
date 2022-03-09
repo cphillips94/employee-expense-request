@@ -21,8 +21,12 @@ public class UserDaoImpl implements UserDao{
 		Statement stmt;
 		try {
 			stmt = conn.createStatement();
-			String query = "SELECT user_id, first_name, last_name, contact_number, role FROM user_details;";
+			String query = "SELECT * FROM user_details;";
 			ResultSet rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				UserPojo userPojo = new UserPojo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+				allUsers.add(userPojo);
+			}
 		} catch (SQLException e) {
 			
 			throw new SystemException();

@@ -2,30 +2,27 @@ package pojo;
 
 public class RequestPojo {
 	private int requestId;
-	private int managerId;
-	private int employeeId;
+	private int userId;
 	private double requestAmount;
 	private String requestDescription;
 	private String requestStatus;
-	@Override
-	public String toString() {
-		return "RequestPojo [requestId=" + requestId + ", managerId=" + managerId + ", employeeId=" + employeeId
-				+ ", requestAmount=" + requestAmount + ", requestDescription=" + requestDescription + ", requestStatus="
-				+ requestStatus + "]";
+	public RequestPojo() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	public RequestPojo(int requestId, int managerId, int employeeId, double requestAmount, String requestDescription,
+	public RequestPojo(int requestId, int user_id, double requestAmount, String requestDescription,
 			String requestStatus) {
 		super();
 		this.requestId = requestId;
-		this.managerId = managerId;
-		this.employeeId = employeeId;
+		this.userId = user_id;
 		this.requestAmount = requestAmount;
 		this.requestDescription = requestDescription;
 		this.requestStatus = requestStatus;
 	}
-	public RequestPojo() {
-		super();
-		// TODO Auto-generated constructor stub
+	@Override
+	public String toString() {
+		return "RequestPojo [requestId=" + requestId + ", user_id=" + userId + ", requestAmount=" + requestAmount
+				+ ", requestDescription=" + requestDescription + ", requestStatus=" + requestStatus + "]";
 	}
 	public int getRequestId() {
 		return requestId;
@@ -33,17 +30,11 @@ public class RequestPojo {
 	public void setRequestId(int requestId) {
 		this.requestId = requestId;
 	}
-	public int getManagerId() {
-		return managerId;
+	public int getUserId() {
+		return userId;
 	}
-	public void setManagerId(int managerId) {
-		this.managerId = managerId;
-	}
-	public int getEmployeeId() {
-		return employeeId;
-	}
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
+	public void setUserId(int user_id) {
+		this.userId = user_id;
 	}
 	public double getRequestAmount() {
 		return requestAmount;
@@ -63,6 +54,4 @@ public class RequestPojo {
 	public void setRequestStatus(String requestStatus) {
 		this.requestStatus = requestStatus;
 	}
-	
-
 }
